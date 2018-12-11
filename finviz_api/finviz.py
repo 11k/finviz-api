@@ -6,17 +6,17 @@ class Filter:
         self.filters = [filter.value for filter in list(args)]
 
     def for_query_string(self):
-        """Returns filters for use as a query string."""
+        """Returns a Finviz-ready string for use in a screener request."""
         return ",".join(self.filters)
 
 def fetch_tickers(filters=None, sort=None):
     """
-    Takes a list of filter and returns a list of matching tickers.
+    Takes a list of filter enums and returns a list of matching tickers.
 
     Parameters
     ----------
     filters : list
-        A list of filters from the filters module. All `Enum` subclassess.
+        A list of filter enums from the `finviz_api.filters` module.
 
     Returns
     -------
@@ -30,7 +30,7 @@ def fetch_tickers(filters=None, sort=None):
     response = requests.get(
         BASE_URL,
         params={
-            "v": API_VERSION, # API Version
+            "v": API_VERSION,
             "f": filter.for_query_string(),
             "o": sort
         }
@@ -40,7 +40,7 @@ def fetch_tickers(filters=None, sort=None):
     return _parse_tickers(response.text)
 
 def _parse_tickers(html):
-    """Extracts tickers from a Finviz screener HTML response page."""
+    """Extracts tickers from a Finviz screener HTML page."""
     TICKER_ELEMENT_CLASS = "screener-link-primary"
 
     soup = BeautifulSoup(html, "html.parser") 
