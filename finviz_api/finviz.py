@@ -9,7 +9,7 @@ class Filter:
         """Returns filters for use as a query string."""
         return ",".join(self.filters)
 
-def fetch_tickers(filters):
+def fetch_tickers(filters=None, sort=None):
     """
     Takes a list of filter and returns a list of matching tickers.
 
@@ -32,6 +32,7 @@ def fetch_tickers(filters):
         params={
             "v": API_VERSION, # API Version
             "f": filter.for_query_string(),
+            "o": sort
         }
     )
     response.raise_for_status()

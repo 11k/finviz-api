@@ -37,6 +37,18 @@ class FinvizTest(unittest.TestCase):
         parsed_tickers = finviz._parse_tickers(self.sample_response)
         self.assertEqual(parsed_tickers, self.tickers_in_sample)
 
+class SortTest(unittest.TestCase):
+    def setUp(self):
+        self.change_sort = ff.Sort.CHANGE
+
+    def test_ascending(self):
+        change_ascending = "change"
+        self.assertEqual(self.change_sort.asc(), change_ascending)
+
+    def test_descending(self):
+        change_descending = "-change"
+        self.assertEqual(self.change_sort.desc(), change_descending)
+
 if __name__ == "__main__":
     unittest.main()
 
