@@ -11,7 +11,7 @@ class FilterTest(unittest.TestCase):
         ]
 
     def test_query_string(self):
-        filter = finviz.Filter(*self.random_filters)
+        filter = finviz.Filter(self.random_filters)
         joined_filters = ",".join([f.value for f in self.random_filters])
         self.assertEqual(filter.for_query_string(), joined_filters)
 

@@ -2,12 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 
 class Filter:
-    def __init__(self, *args):
-        self.filters = [filter.value for filter in list(args)]
+    def __init__(self, filters=None):
+        self.filters = filters
 
     def for_query_string(self):
         """Returns a Finviz-ready string for use in a screener request."""
-        return ",".join(self.filters)
+        return ",".join(
+            [filter.value for filter in self.filters] if self.filters else []
+        )
 
 def fetch_tickers(filters=None, sort=None):
     """
