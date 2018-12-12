@@ -2,9 +2,13 @@ from enum import Enum
 
 class MarketCap(Enum):
     OVER_300_MIL = "cap_smallover"
+    OVER_2_BIL = "cap_midover"
 
 class Price(Enum):
     UNDER_20 = "sh_price_u20"
+
+class Country(Enum):
+    USA = "geo_usa"
 
 class Sort(Enum):
     CHANGE = "change"
