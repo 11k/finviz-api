@@ -6,6 +6,7 @@ class MarketCap(Enum):
 
 class Price(Enum):
     UNDER_20 = "sh_price_u20"
+    FROM_5_TO_20 = "sh_price_5to20"
 
 class Country(Enum):
     USA = "geo_usa"
